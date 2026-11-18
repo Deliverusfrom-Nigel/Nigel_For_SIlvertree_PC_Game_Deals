@@ -146,11 +146,66 @@ function searchByTitle(games, title)
 }
 
 
-// Testing
-console.log(getOnSale(games).length)      
-console.log(discountPercent(games[0]))    
+// Here this is the table for 1 game 
+function createRow(game) 
+{
+  const row = document.createElement("tr")  
+  const titleCell  = createCell(game.title)
+  const storeCell  = createCell(game.store)
+  const priceCell = document.createElement("td")
+  const discountCell = document.createElement("td")
+  const statusCell = document.createElement("td")
 
-console.log(discountPercent(games[1]))    
-console.log(getCheapest(games).title)     
-console.log(getCheapest([]))              
-console.log(searchByTitle(games, "").length) 
+
+  // build storeCell, priceCell, discountCell, statusCell the same way
+
+  if (isOnSale(game)) {   
+    const nromal = document.createElement("s")
+    nromal.textContent = formatPrice(game.normalPrice)
+    priceCell.append(formatPrice(game.salePrice) + " ", nromal)
+    
+    
+    const tag = document.createElement("span")
+    tag.className = "tag"
+    tag.textContent = "ON SALE"
+    statusCell.append(tag)
+
+
+  } else {
+    // here i just put the normal price 
+
+    priceCell.textContent = formatPrice(game.normalPrice)
+
+    discountCell.textContent = "-"
+  }
+
+
+  row.append(titleCell, storeCell, priceCell, discountCell, statusCell)
+  return row
+}
+
+function renderDeals(list) 
+{
+  const tbody = document.getElementById("deals")
+  tbody.textContent = ""
+
+    if (list.length === 0) 
+      {
+        const row = document.createElement("tr")
+        const cell = createCell("No games found")
+      
+        cell.colSpan = 5
+        row.append(cell)
+        tbody.append(row)
+        return
+      }    
+
+  
+  
+  for (let index = 0; index < list.length; index++) 
+    {
+      tbody.append(createRow(list[index]))
+    }
+}
+
+renderDeals(games)
