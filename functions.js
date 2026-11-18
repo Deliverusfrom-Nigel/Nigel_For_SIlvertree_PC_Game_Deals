@@ -132,33 +132,25 @@ function cleanTitle(title)
 
 function searchByTitle(games, title) 
 {
+    const results = []
+    
   for (let index = 0; index < games.length; index++) 
     {
-    let game = games[index]
-    let found = false
-
+    const game = games[index]
     if (cleanTitle(game.title).includes(cleanTitle(title))) 
     {
-      found = true  
+      results.push(game)
     } 
-    else 
-      {
-        found === false
-    }
-    
   }  
-
-  if  (found == false)
-    {
-      return null
-    }
-    else
-    {
-      return game
-    }
+  return results
 }
 
 
 // Testing
-console.log(getCheapest(games).title)
-console.log(getCheapest([]))
+console.log(getOnSale(games).length)      
+console.log(discountPercent(games[0]))    
+
+console.log(discountPercent(games[1]))    
+console.log(getCheapest(games).title)     
+console.log(getCheapest([]))              
+console.log(searchByTitle(games, "").length) 
