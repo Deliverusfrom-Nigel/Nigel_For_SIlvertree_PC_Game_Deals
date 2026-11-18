@@ -151,11 +151,6 @@ function searchByTitle(games, title)
 
 // This is where all the logic stuff finishes off, NOw we go to presenting the data in the table 
 
-
-
-
-
-
 // The actual page with the data, its code is now here
 
 function createCell(text)
@@ -236,4 +231,26 @@ function renderDeals(list)
     }
 }
 
-renderDeals(games)
+
+// Now the filtering part and the search bar
+const searchInput = document.getElementById("search")
+const onSaleCheckbox = document.getElementById("onSaleOnly")
+
+// Apply both controls to the full list, then render the result
+function updateDeals()
+{
+  let list = searchByTitle(games, searchInput.value)
+
+  if (onSaleCheckbox.checked)
+  {
+    list = getOnSale(list)
+  }
+
+  renderDeals(list)
+}
+
+// these are the listneers to be used for the live search "input" fires on every keystroke; "change" fires when the box is ticked
+searchInput.addEventListener("input", updateDeals)
+onSaleCheckbox.addEventListener("change", updateDeals)
+
+updateDeals() 
