@@ -60,19 +60,16 @@ const games = [
 // My first Function getting the games on sale 
 function getOnSale(games)
 {
+  const  gamesOnSale = []
   for (let index = 0; index < games.length; index++) 
     {
       let game = games[index]
-      const  gamesOnSale = []
-      {
           if (game.salePrice < game.normalPrice)
               {
                   gamesOnSale.push(game) 
               }
-      }
-
-      return gamesOnSale
     } 
+    return gamesOnSale
 }
 
 // Second Function gettting the discount for a game passed into the function
