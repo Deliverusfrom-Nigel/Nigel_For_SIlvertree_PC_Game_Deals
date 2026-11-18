@@ -82,20 +82,19 @@ function discountPercent(game)
     
     else 
       {
-        return ((game.normalPrice - game.salePrice)/game.normalPrice)*100
+        return ((((game.normalPrice - game.salePrice)/game.normalPrice)*100).toFixed(2))
     }
 }
 
 
 // Third Function Getting the cheapest game
-
 function getPrice(game)
 {
   if (game.salePrice === game.normalPrice)
   {
     return game.salePrice
   }
-  else if (game.salePrice > game.normalPrice)
+  else if (game.normalPrice > game.salePrice)
   {
     return game.salePrice
   }
@@ -108,22 +107,21 @@ function getPrice(game)
 
 function getCheapest(games)
 {
-  for (let index = 0; index < games.length; index++) 
-    {
-      const currentCheapest = {}
+  if (games.length === 0)
+  {
+    return null
+  }
+  let currentCheapest = games[0]  // Const Cannot be reassingled 
 
+  for (let index = 1; index < games.length; index++) 
+    {
       if (getPrice(games[index]) < getPrice(currentCheapest))
         { 
           currentCheapest = games[index]
         }
-      else if (getPrice(games[index]) >= getPrice(currentCheapest))
-      {
-        currentCheapest = games[index]
       }
-    }
-
     return currentCheapest
-
+  
 }
 
 
