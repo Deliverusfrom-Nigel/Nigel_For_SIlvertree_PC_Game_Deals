@@ -54,7 +54,7 @@ on-sale filter. The logic behind it is a set of small, separate functions.
 ## Obstacles
 
 - **Skill Issue** One obstacle was that I havent Done Web Development in a minute, last semester was where the heavy web dev stuff was happening.
-- **Spammed Email ** The Email for this project was captrued in the spam emails so i did not see it in time, so there was a time contraint.
+- **Spammed Email** The Email for this project was captrued in the spam emails so i did not see it in time, so there was a time contraint.
 - **`return` inside a loop.** In `getOnSale` and `searchByTitle` I put
   `return` inside the `for` loop, so the functions stopped after the first
   game. I fixed it by collecting matches in an array declared before the
