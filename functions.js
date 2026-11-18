@@ -71,6 +71,10 @@ function getOnSale(games)
     } 
     return gamesOnSale
 }
+function isOnSale(game)
+{
+  return game.salePrice < game.normalPrice
+}
 
 // Second Function gettting the discount for a game passed into the function
 function discountPercent(game)
@@ -145,6 +149,29 @@ function searchByTitle(games, title)
   return results
 }
 
+// This is where all the logic stuff finishes off, NOw we go to presenting the data in the table 
+
+
+
+
+
+
+// The actual page with the data, its code is now here
+
+function createCell(text)
+{
+  const cell = document.createElement("td")
+  cell.textContent = text
+  return cell
+} // here im creating the cell this is just a helper fnction
+
+
+
+function formatPrice(amount)
+{
+  return "R" + amount.toFixed(2)
+}   // just formatting the price fields
+
 
 // Here this is the table for 1 game 
 function createRow(game) 
@@ -157,9 +184,9 @@ function createRow(game)
   const statusCell = document.createElement("td")
 
 
-  // build storeCell, priceCell, discountCell, statusCell the same way
-
-  if (isOnSale(game)) {   
+  if (isOnSale(game)) 
+    {   
+      // Here now we are trying to "format" and display the prices of the game sthat are on sale
     const nromal = document.createElement("s")
     nromal.textContent = formatPrice(game.normalPrice)
     priceCell.append(formatPrice(game.salePrice) + " ", nromal)
@@ -199,8 +226,6 @@ function renderDeals(list)
         tbody.append(row)
         return
       }    
-
-  
   
   for (let index = 0; index < list.length; index++) 
     {
