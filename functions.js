@@ -124,4 +124,41 @@ function getCheapest(games)
   
 }
 
+// Functioin 4 Case insenitive title match
+function cleanTitle(title)
+  {
+    return title.toLowerCase().trim()  // Im not going to cut or strim anything, or I could trim the end for whitespaces at the end 
+  }
 
+function searchByTitle(games, title) 
+{
+  for (let index = 0; index < games.length; index++) 
+    {
+    let game = games[index]
+    let found = false
+
+    if (cleanTitle(game.title).includes(cleanTitle(title))) 
+    {
+      found = true  
+    } 
+    else 
+      {
+        found === false
+    }
+    
+  }  
+
+  if  (found == false)
+    {
+      return null
+    }
+    else
+    {
+      return game
+    }
+}
+
+
+// Testing
+console.log(getCheapest(games).title)
+console.log(getCheapest([]))
