@@ -57,19 +57,76 @@ const games = [
   }
 ]
 
-function getOnSale(all_games) 
+// My first Function getting the games on sale 
+function getOnSale(games)
 {
-    const games_on_sale = []
+  for (let index = 0; index < games.length; index++) 
+    {
+      let game = games[index]
+      const  gamesOnSale = []
+      {
+          if (game.salePrice < game.normalPrice)
+              {
+                  gamesOnSale.push(game) 
+              }
+      }
 
-    for (let index = 0; index < all_games.length; index++) 
-        {
-            if (all_games[index].salePrice < all_games[index].normalPrice)
-            {
-                //games_on_sale[index] = all_games[index].title
-                games_on_sale.push(all_games[index].title) 
-            }
+      return gamesOnSale
+    } 
+}
+
+// Second Function gettting the discount for a game passed into the function
+function discountPercent(game)
+{
+    if (game.salePrice === game.normalPrice || game.normalPrice === 0 || game.normalPrice < 0)
+    {
+        return 0
     }
-    return games_on_sale
+    
+    else 
+      {
+        return ((game.normalPrice - game.salePrice)/game.normalPrice)*100
+    }
+}
+
+
+// Third Function Getting the cheapest game
+
+function getPrice(game)
+{
+  if (game.salePrice === game.normalPrice)
+  {
+    return game.salePrice
+  }
+  else if (game.salePrice > game.normalPrice)
+  {
+    return game.salePrice
+  }
+  else
+  {
+    return game.normalPrice
+  }
+}
+
+
+function getCheapest(games)
+{
+  for (let index = 0; index < games.length; index++) 
+    {
+      const currentCheapest = {}
+
+      if (getPrice(games[index]) < getPrice(currentCheapest))
+        { 
+          currentCheapest = games[index]
+        }
+      else if (getPrice(games[index]) >= getPrice(currentCheapest))
+      {
+        currentCheapest = games[index]
+      }
+    }
+
+    return currentCheapest
+
 }
 
 
