@@ -191,6 +191,9 @@ function createRow(game)
     nromal.textContent = formatPrice(game.normalPrice)
     priceCell.append(formatPrice(game.salePrice) + " ", nromal)
     
+    // this part is for now the display of the percentage off 
+    discountCell.textContent = Math.round(discountPercent(game)) + "% off"
+    
     
     const tag = document.createElement("span")
     tag.className = "tag"
